@@ -5,15 +5,6 @@
       "name": "Students",
       "components": [
         {
-         "type": "card",
-         "title": "AI-Powered Student Management Dashboard"
-        },
-        
-        {
-          "type": "table"
-        },
-
-        {
           "type": "form",
           "fields": [
             {
@@ -21,25 +12,25 @@
               "type": "text",
               "label": "Student Name"
             },
-
             {
               "name": "email",
               "type": "email",
               "label": "Email"
             },
-
             {
               "name": "phone",
               "type": "text",
               "label": "Phone Number"
             },
-
             {
               "name": "course",
               "type": "text",
               "label": "Course"
             }
           ]
+        },
+        {
+          "type": "table"
         }
       ]
     }
