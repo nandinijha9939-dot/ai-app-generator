@@ -9,7 +9,7 @@ type Field = {
 };
 
 type Props = {
-  fields: Field[];
+  fields?: Field[];
 };
 
 export default function DynamicForm({
@@ -18,6 +18,14 @@ export default function DynamicForm({
   const [formData, setFormData] = useState<{
     [key: string]: string;
   }>({});
+
+  if (!fields || fields.length === 0) {
+    return (
+      <div className="bg-yellow-500 text-black p-4 rounded-lg">
+        No fields configured
+      </div>
+    );
+  }
 
   const handleChange = (
     name: string,
@@ -35,32 +43,18 @@ export default function DynamicForm({
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        "/api/runtime",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-          body: JSON.stringify({
-            resource: "students",
-            data: formData,
-          }),
-        }
-      );
+      await fetch("/api/runtime", {
+        method: "POST",
+        headers: {
+          "Content-Type":
+            "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-      const result =
-        await response.json();
-
-      console.log(result);
-
-      alert(
-        "Data saved successfully!"
-      );
+      alert("Data saved successfully!");
     } catch (error) {
       console.error(error);
-
       alert("Failed to save data");
     }
   };
@@ -68,7 +62,7 @@ export default function DynamicForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-4 bg-zinc-900 p-6 rounded-xl border border-zinc-700"
+      className="space-y-5 bg-zinc-900/80 backdrop-blur-sm p-8 rounded-2xl border border-zinc-800 shadow-xl"
     >
       {fields.map((field) => (
         <div key={field.name}>
@@ -85,14 +79,14 @@ export default function DynamicForm({
                 e.target.value
               )
             }
-            className="w-full p-3 rounded-lg bg-zinc-800 text-white border border-zinc-600"
+           className="w-full p-4 rounded-xl bg-zinc-800 border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
       ))}
 
       <button
         type="submit"
-        className="bg-white text-black px-4 py-2 rounded-lg font-semibold"
+        className="w-full bg-blue-600 hover:bg-blue-700 transition-all py-3 rounded-xl font-semibold"
       >
         Submit
       </button>

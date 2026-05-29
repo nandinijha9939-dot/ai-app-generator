@@ -5,15 +5,10 @@
       "name": "Students",
       "components": [
         {
-          "type": "card",
-          "title": "Student Dashboard"
+         "type": "card",
+         "title": "AI-Powered Student Management Dashboard"
         },
-
-        {
-          "type": "card",
-          "title": "AI Generated Runtime UI"
-        },
-
+        
         {
           "type": "table"
         },

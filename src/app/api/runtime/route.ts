@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-
+import { runWorkflow } from "@/lib/workflow";
 export async function GET() {
   const records = await prisma.record.findMany({
     orderBy: {
@@ -22,5 +22,9 @@ export async function POST(req: Request) {
     },
   });
 
+//   await runWorkflow(
+//   "students",
+//   body
+// );
   return NextResponse.json(record);
 }

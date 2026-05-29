@@ -33,17 +33,24 @@ export default function CSVImporter() {
     });
   };
 
-  return (
-    <div className="bg-zinc-900 p-6 rounded-xl border border-zinc-700">
-      <h2 className="text-xl font-bold mb-4">
-        Import CSV
-      </h2>
+ return (
+  <div className="bg-zinc-900/80 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 shadow-xl mb-8">
+    <h2 className="text-2xl font-bold mb-4">
+      Import Student Data
+    </h2>
 
+    <div className="flex items-center gap-4 flex-wrap">
       <input
         type="file"
         accept=".csv"
         onChange={handleFileUpload}
+        className="text-sm"
       />
+
+      <span className="text-zinc-400">
+        Upload CSV file containing student records
+      </span>
     </div>
- );
+  </div>
+);
 }
