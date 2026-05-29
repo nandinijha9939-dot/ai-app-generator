@@ -1,0 +1,52 @@
+{
+  "appName": "Student Portal",
+  "pages": [
+    {
+      "name": "Students",
+      "components": [
+        {
+          "type": "card",
+          "title": "Student Dashboard"
+        },
+
+        {
+          "type": "card",
+          "title": "AI Generated Runtime UI"
+        },
+
+        {
+          "type": "table"
+        },
+
+        {
+          "type": "form",
+          "fields": [
+            {
+              "name": "studentName",
+              "type": "text",
+              "label": "Student Name"
+            },
+
+            {
+              "name": "email",
+              "type": "email",
+              "label": "Email"
+            },
+
+            {
+              "name": "phone",
+              "type": "text",
+              "label": "Phone Number"
+            },
+
+            {
+              "name": "course",
+              "type": "text",
+              "label": "Course"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
