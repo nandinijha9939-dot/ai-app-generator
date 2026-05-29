@@ -18,7 +18,7 @@ export default function DynamicRenderer({
         const DynamicComponent =
           ComponentRegistry[
             component.type as keyof typeof ComponentRegistry
-          ];
+          ] as React.ComponentType<any>;
 
         if (!DynamicComponent) {
           return (
@@ -34,7 +34,7 @@ export default function DynamicRenderer({
         return (
           <DynamicComponent
             key={index}
-            {...component}
+            {...(component as any)}
           />
         );
       })}
