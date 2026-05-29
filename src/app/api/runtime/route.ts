@@ -3,10 +3,11 @@ import { prisma } from "@/lib/prisma";
 import { runWorkflow } from "@/lib/workflow";
 export async function GET() {
   const records = await prisma.record.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+  take: 1,
+  orderBy: {
+    createdAt: "desc",
+  },
+});
 
   return NextResponse.json(records);
 }
@@ -22,9 +23,5 @@ export async function POST(req: Request) {
     },
   });
 
-//   await runWorkflow(
-//   "students",
-//   body
-// );
   return NextResponse.json(record);
 }

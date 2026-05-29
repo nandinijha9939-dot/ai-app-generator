@@ -12,22 +12,38 @@ export default function DynamicTable({
   const [runtimeData, setRuntimeData] =
     useState<any[]>([]);
 
-  useEffect(() => {
-    fetch("/api/runtime")
-      .then((res) => res.json())
-      .then((result) => {
-        const formatted = result
-  .filter(
-    (item: any) =>
-      item.data &&
-      Object.keys(item.data).length > 0
-  )
-  .map((item: any) => ({
-    ...item.data,
-  }));
+  const loadData = async () => {
+    try {
+      const res = await fetch(
+        "/api/runtime",
+        {
+          cache: "no-store",
+        }
+      );
 
-        setRuntimeData(formatted);
-      });
+      const result = await res.json();
+
+      const formatted = result.map(
+        (item: any) =>
+          item.data ?? item
+      );
+
+      setRuntimeData(formatted);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    loadData();
+
+    const interval = setInterval(
+      loadData,
+      3000
+    );
+
+    return () =>
+      clearInterval(interval);
   }, []);
 
   const finalData =
@@ -49,7 +65,7 @@ export default function DynamicTable({
   return (
     <div className="overflow-x-auto">
       <table className="w-full border border-zinc-700 rounded-xl overflow-hidden">
-        <thead className="bg-zinc-600">
+        <thead className="bg-blue-600">
           <tr>
             {headers.map((header) => (
               <th
@@ -63,21 +79,29 @@ export default function DynamicTable({
         </thead>
 
         <tbody>
-          {finalData.map((row, index) => (
-            <tr
-              key={index}
-              className="border-t border-zinc-800 hover:bg-zinc-800/50"
-            >
-              {headers.map((header) => (
-                <td
-                  key={header}
-                  className="p-4"
-                >
-                  {row[header]}
-                </td>
-              ))}
-            </tr>
-          ))}
+          {finalData.map(
+            (row, index) => (
+              <tr
+                key={index}
+                className="border-t border-zinc-800 hover:bg-zinc-800/50"
+              >
+                {headers.map(
+                  (header) => (
+                    <td
+                      key={header}
+                      className="p-4"
+                    >
+                      {
+                        row[
+                          header
+                        ]
+                      }
+                    </td>
+                  )
+                )}
+              </tr>
+            )
+          )}
         </tbody>
       </table>
     </div>

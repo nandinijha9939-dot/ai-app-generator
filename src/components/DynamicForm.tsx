@@ -19,7 +19,7 @@ export default function DynamicForm({
     [key: string]: string;
   }>({});
 
-  if (!fields || fields.length === 0) {
+  if (!fields?.length) {
     return (
       <div className="bg-yellow-500 text-black p-4 rounded-lg">
         No fields configured
@@ -43,35 +43,54 @@ export default function DynamicForm({
     e.preventDefault();
 
     try {
-      await fetch("/api/runtime", {
-        method: "POST",
-        headers: {
-          "Content-Type":
-            "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "/api/runtime",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type":
+              "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
-      alert("Data saved successfully!");
+      if (!response.ok) {
+        throw new Error();
+      }
+
+      alert(
+        "Data saved successfully!"
+      );
+
+      setFormData({});
+
+      location.reload();
     } catch (error) {
       console.error(error);
-      alert("Failed to save data");
+
+      alert(
+        "Failed to save data"
+      );
     }
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-5 bg-zinc-900/80 backdrop-blur-sm p-8 rounded-2xl border border-zinc-800 shadow-xl"
+      className="space-y-5 bg-zinc-900/80 p-8 rounded-2xl border border-zinc-800"
     >
       {fields.map((field) => (
         <div key={field.name}>
-          <label className="block text-white mb-2">
+          <label className="block mb-2">
             {field.label}
           </label>
 
           <input
             type={field.type}
+            value={
+              formData[field.name] || ""
+            }
             placeholder={field.label}
             onChange={(e) =>
               handleChange(
@@ -79,14 +98,14 @@ export default function DynamicForm({
                 e.target.value
               )
             }
-           className="w-full p-4 rounded-xl bg-zinc-800 border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-4 rounded-xl bg-zinc-800 border border-zinc-700"
           />
         </div>
       ))}
 
       <button
         type="submit"
-        className="w-full bg-blue-600 hover:bg-blue-700 transition-all py-3 rounded-xl font-semibold"
+        className="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-xl"
       >
         Submit
       </button>
