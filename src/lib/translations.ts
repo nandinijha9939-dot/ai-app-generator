@@ -5,33 +5,34 @@ export const translations = {
       "Metadata-Driven Student Management Platform",
 
     signIn: "Sign In",
-    noDataAvailable: "No data available",
-    importStudentData:
-      "Import Student Data",
 
-    uploadCsv:
-      "Upload CSV file containing student records",
+    studentName: "Student Name",
+    email: "Email",
+    phoneNumber: "Phone Number",
+    course: "Course",
 
-    notifications:
-      "Notifications",
+    submit: "Submit",
 
-    studentRecordCreated:
-      "Student record created",
+    noFieldsConfigured:
+      "No fields configured",
 
-    studentName:
-      "Student Name",
+    dataSavedSuccessfully:
+      "Data saved successfully!",
 
-    email:
-      "Email",
+    failedToSaveData:
+      "Failed to save data",
 
-    phoneNumber:
-      "Phone Number",
+    noDataAvailable:
+      "No data available",
 
-    course:
-      "Course",
+    runtimeDashboard:
+      "Runtime generated dashboard component",
 
-    submit:
-      "Submit",
+    untitledCard:
+      "Untitled Card",
+
+    unknownComponent:
+      "Unknown Component",
   },
 
   hi: {
@@ -42,34 +43,37 @@ export const translations = {
 
     signIn: "साइन इन",
 
-    importStudentData:
-      "छात्र डेटा आयात करें",
-
-    uploadCsv:
-      "छात्र रिकॉर्ड वाली CSV फ़ाइल अपलोड करें",
-
-    notifications:
-      "सूचनाएँ",
-
-    studentRecordCreated:
-      "छात्र रिकॉर्ड बनाया गया",
-
     studentName:
       "छात्र का नाम",
 
-    email:
-      "ईमेल",
+    email: "ईमेल",
 
     phoneNumber:
       "फ़ोन नंबर",
 
-    course:
-      "पाठ्यक्रम",
+    course: "पाठ्यक्रम",
 
-    submit:
-      "सबमिट करें",
-    noDataAvailable: "कोई डेटा उपलब्ध नहीं है",
-    
+    submit: "सबमिट करें",
 
+    noFieldsConfigured:
+      "कोई फ़ील्ड कॉन्फ़िगर नहीं है",
+
+    dataSavedSuccessfully:
+      "डेटा सफलतापूर्वक सहेजा गया",
+
+    failedToSaveData:
+      "डेटा सहेजने में विफल",
+
+    noDataAvailable:
+      "कोई डेटा उपलब्ध नहीं है",
+
+    runtimeDashboard:
+      "रनटाइम द्वारा निर्मित डैशबोर्ड कॉम्पोनेंट",
+
+    untitledCard:
+      "बिना शीर्षक वाला कार्ड",
+
+    unknownComponent:
+      "अज्ञात कॉम्पोनेंट",
   },
 };
