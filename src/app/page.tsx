@@ -30,7 +30,6 @@ export default function Home() {
     <main className="min-h-screen bg-gradient-to-br from-zinc-950 via-black to-zinc-900 text-white px-8 py-10">
       <div className="max-w-7xl mx-auto">
 
-        {/* Header */}
         <div className="flex justify-between items-center mb-10">
           <div>
             <h1 className="text-5xl font-extrabold tracking-tight">
@@ -48,28 +47,30 @@ export default function Home() {
               setLang={setLang}
             />
 
-            <SignInButton />
+            <SignInButton mode="modal">
+            <span className="px-4 py-2 bg-blue-600 rounded-lg cursor-pointer">
+            {t.signIn}
+            </span>
+            </SignInButton>
 
             <UserButton />
           </div>
         </div>
 
-        {/* Top Widgets */}
         <div className="grid lg:grid-cols-3 gap-6 mb-8">
           <div className="lg:col-span-2">
-            <CSVImporter />
+            <CSVImporter t={t} />
           </div>
 
           <div>
-            <NotificationPanel />
+            <NotificationPanel t={t} />
           </div>
         </div>
 
-        {/* Runtime UI */}
         <DynamicRenderer
           components={page.components}
+          t={t}
         />
-
       </div>
     </main>
   );

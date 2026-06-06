@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 
 type Props = {
   data?: any[];
+  t: any;
 };
 
 export default function DynamicTable({
   data = [],
+  t,
 }: Props) {
   const [runtimeData, setRuntimeData] =
     useState<any[]>([]);
@@ -54,13 +56,27 @@ export default function DynamicTable({
   if (!finalData.length) {
     return (
       <p className="text-zinc-400">
-        No data available
+        {t.noDataAvailable}
       </p>
     );
   }
 
   const headers =
     Object.keys(finalData[0]);
+
+  const headerMap: Record<
+    string,
+    string
+  > = {
+    studentName: t.studentName,
+    email: t.email,
+    phoneNumber: t.phoneNumber,
+    course: t.course,
+
+    // add more fields here later
+    name: t.studentName,
+    phone: t.phoneNumber,
+  };
 
   return (
     <div className="overflow-x-auto">
@@ -72,7 +88,8 @@ export default function DynamicTable({
                 key={header}
                 className="text-left p-4 capitalize"
               >
-                {header}
+                {headerMap[header] ||
+                  header}
               </th>
             ))}
           </tr>

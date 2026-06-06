@@ -1,28 +1,19 @@
-"use client";
+type Props = {
+  t: any;
+};
 
-import { useEffect, useState } from "react";
-
-export default function NotificationPanel() {
-  const [notifications, setNotifications] =
-    useState<any[]>([]);
-
-  useEffect(() => {
-    fetch("/api/notifications")
-      .then((res) => res.json())
-      .then(setNotifications);
-  }, []);
-
+export default function NotificationPanel({
+  t,
+}: Props) {
   return (
-    <div className="bg-zinc-900 p-4 rounded-xl">
-      <h2 className="font-bold mb-2">
-        Notifications
+    <div className="p-6 rounded-xl bg-zinc-900">
+      <h2 className="font-bold text-xl">
+        {t.notifications}
       </h2>
 
-      {notifications.map((n) => (
-        <div key={n.id}>
-          {n.message}
-        </div>
-      ))}
+      <p className="mt-3">
+        {t.studentRecordCreated}
+      </p>
     </div>
   );
 }

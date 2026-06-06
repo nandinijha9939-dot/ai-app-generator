@@ -7,10 +7,12 @@ type ComponentConfig = {
 
 type Props = {
   components: ComponentConfig[];
+  t: any;
 };
 
 export default function DynamicRenderer({
   components,
+  t,
 }: Props) {
   return (
     <div className="space-y-6">
@@ -26,7 +28,7 @@ export default function DynamicRenderer({
               key={index}
               className="bg-red-500 text-white p-4 rounded-lg"
             >
-              Unknown component: {component.type}
+              {t.unknownComponent}: {component.type}
             </div>
           );
         }
@@ -34,7 +36,8 @@ export default function DynamicRenderer({
         return (
           <DynamicComponent
             key={index}
-            {...(component as any)}
+            {...component}
+            t={t}
           />
         );
       })}
